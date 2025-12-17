@@ -31,6 +31,31 @@ FormInput.addEventListener('submit', function(e) {
     console.log(NoteInput.value)
 })
 
+notes.addEventListener('click', function(e)
+{   //Helps to delete the list
+    if(e.target.classList.contains('btn_delete')){
+        const container = e.target.parentElement
+        let key = container.getAttribute('data-key')
+        localStorage.removeItem(key)
+
+        container.remove()
+}
+    //e.target j ma click gryo tei return hunxa
+}
+)
+notes.addEventListener('change', function(e) //only applies to checkbox
+{   
+    //Check box true or false in local storage
+    if(e.target.classList.contains('checkbox')){
+    const container = e.target.parentElement
+    let key = container.getAttribute('data-key')
+    localStorage.setItem(`${key}_checked`,e.target.checked)//User 1 already exist
+    }
+   
+}
+)
+
+
 function addNoteToDOM(key, noteName) {
     notes.insertAdjacentHTML('beforeend', `
             <div class="container_new_note" data-key="${key}">
@@ -43,3 +68,4 @@ function addNoteToDOM(key, noteName) {
 
     `);
 }
+//What is local storage data kasari read grni 
